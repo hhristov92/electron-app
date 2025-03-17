@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self'"
+    />
+    <title>Гипсови калъпи - МОДЕЛИ</title>
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <div class="header-content">
+          <div class="logo-container">
+            <h1>Гипсови калъпи - МОДЕЛИ</h1>
+          </div>
+          <div class="search-container">
+            <div class="search-wrapper">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                type="text"
+                id="search"
+                placeholder="Търси по име на модел..."
+              />
+              <button id="searchBtn" class="btn search-btn">Търси</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="main-layout">
+        <!-- Left Sidebar -->
+        <div class="left-panel">
+          <!-- Admin Login -->
+          <div id="adminLogin" class="admin-login panel-section">
+            <h2><i class="fas fa-user-lock"></i> Вход</h2>
+            <form id="loginForm">
+              <div class="form-group">
+                <label for="adminName">Име</label>
+                <input
+                  type="text"
+                  id="adminName"
+                  placeholder="Въведете име"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="personalId">Зав.номер</label>
+                <input
+                  type="password"
+                  id="personalId"
+                  pattern="[0-9]{4}"
+                  placeholder="****"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn primary-btn">
+                <i class="fas fa-sign-in-alt"></i> Вход
+              </button>
+            </form>
+          </div>
+
+          <!-- Categories -->
+          <div class="categories-container panel-section">
+            <h3><i class="fas fa-layer-group"></i> Категории</h3>
+            <ul class="categories-list">
+              <li class="category-item active">
+                <i class="fas fa-home"></i> Начало
+              </li>
+              <li class="category-item">
+                <i class="fas fa-toilet"></i> Тоалетни
+              </li>
+              <li class="category-item"><i class="fas fa-ring"></i> Рингове</li>
+              <li class="category-item"><i class="fas fa-tasks"></i> Езици</li>
+              <li class="category-item"><i class="fas fa-box"></i> Казани</li>
+              <li class="category-item">
+                <i class="fas fa-shield-alt"></i> Капаци
+              </li>
+              <li class="category-item"><i class="fas fa-stream"></i> FFC</li>
+              <li class="category-item"><i class="fas fa-shapes"></i> Други</li>
+            </ul>
+          </div>
+
+          <!-- Admin Controls -->
+          <div id="adminControls" class="admin-controls panel-section">
+            <button id="addModelBtn" class="btn primary-btn">
+              <i class="fas fa-plus"></i> Добави модел
+            </button>
+            <button id="logoutBtn" class="btn secondary-btn">
+              <i class="fas fa-sign-out-alt"></i> Изход
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="right-panel">
+          <!-- Status Messages -->
+          <div id="statusMessage" class="status-message"></div>
+
+          <!-- Results Grid -->
+          <div id="results" class="results">
+            <!-- Empty state message will be added here by JS when there are no results -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Model Modal (Hidden by default) -->
+    <div id="addModelModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-plus-circle"></i> Добави нов модел</h2>
+          <button id="closeModal" class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="addModelForm">
+            <div class="form-group">
+              <label for="modelName">Име на модела:</label>
+              <input type="text" id="modelName" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="modelCategory">Категория:</label>
+              <select id="modelCategory" class="form-control">
+                <option value="Тоалетни">Тоалетни</option>
+                <option value="Рингове">Рингове</option>
+                <option value="Езици">Езици</option>
+                <option value="Казани">Казани</option>
+                <option value="Капаци">Капаци</option>
+                <option value="FFC">FFC</option>
+                <option value="Други">Други</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="dimensionsF25">Размери Ф25:</label>
+              <textarea
+                id="dimensionsF25"
+                class="form-control"
+                rows="6"
+                placeholder="По един размер на ред..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="dimensionsF20">Размери Ф20:</label>
+              <textarea
+                id="dimensionsF20"
+                class="form-control"
+                rows="6"
+                placeholder="По един размер на ред..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="modelImage">Изображение:</label>
+              <input
+                type="file"
+                id="modelImage"
+                class="form-control"
+                accept="image/*"
+              />
+            </div>
+            <div class="form-actions">
+              <button type="button" id="cancelAdd" class="btn-secondary">
+                Отказ
+              </button>
+              <button type="submit" class="btn-primary">Запази</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
